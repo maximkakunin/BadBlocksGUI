@@ -12,7 +12,7 @@
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-  <TextField fx:id="commandEdit" promptText="команда запуска утилиты" text="sudo badblocks -nsv /dev/sdd1" />
+  <TextField fx:id="commandEdit" promptText="команда запуска утилиты" text="echo %s | sudo -S badblocks -nsv /dev/sdd1" />
   <ScrollPane prefHeight="409.0" prefWidth="413.0">
     <content>
       <GridPane fx:id="grid" prefHeight="390.0" prefWidth="393.0" />
