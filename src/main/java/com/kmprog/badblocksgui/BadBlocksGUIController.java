@@ -6,14 +6,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 
@@ -41,7 +39,13 @@ public class BadBlocksGUIController {
                 // Начинаем долгую задачу
                 /* Create a new process */
                 //ProcessBuilder pb = new ProcessBuilder("sh", "-c", "sudo badblocks -nsv /dev/sdd1");
-                ProcessBuilder pb = new ProcessBuilder("sh", "-c", commandEdit.getText());
+                String cmd = commandEdit.getText();
+
+                String password = System.getProperty("sudo_password");
+                password = password == null ? "" : password;
+                cmd = String.format(cmd, password);
+                ProcessBuilder pb = new ProcessBuilder("sh", "-c", cmd);
+
                 //pb.redirectErrorStream(true);
                 /* Start the process */
                 Process proc = pb.start();
